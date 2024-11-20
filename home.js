@@ -1,59 +1,99 @@
+const body = document.querySelector("body");
+const sidebar = body.querySelector(".sidebar");
+const toggle = body.querySelector(".toggle");
+const modeSwitch = body.querySelector(".theme-toggle");
+const icon = document.getElementById('lights');
 
+const arrow = body.querySelector('.arrow');
+const subMenu = document.querySelector('.sub-menu');
 
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Get necessary elements
-    const profileHeader = document.querySelector('.profile-header');
-    const dropdownContent = document.getElementById('myDropdown');
+const notificationsBtn = document.querySelector('.notifications-trigger');
+const alertsPanel = document.querySelector('.alerts-panel');
+const userBtn = document.querySelector('.user-trigger');
+const userMenu = document.querySelector('.user-menu');
 
-    // Toggle dropdown when clicking the header
-    profileHeader.addEventListener('click', function(event) {
-        event.stopPropagation();
-        dropdownContent.classList.toggle('show');
-    });
+ 
+toggle.addEventListener("click", () =>{
+    sidebar.classList.toggle("close");
+});
 
-    // Close dropdown when clicking outside
+arrow.addEventListener('click', () => {
+    arrow.classList.toggle('rotate');
+    subMenu.classList.toggle('show');
+});
+
+sidebar.addEventListener('click', (e) => {
+    if (e.target.classList.contains('toggle')) { 
+      subMenu.classList.remove('show');
+      arrow.classList.remove('rotate');
+    }
+  });
+
+  function toggleAlertsPanel() {
+    userMenu.hidden = true;
+    alertsPanel.hidden = !alertsPanel.hidden;
+}
+
+  function toggleUserMenu() {
+      alertsPanel.hidden = true;
+      userMenu.hidden = !userMenu.hidden;
+  }
+
+  notificationsBtn.addEventListener('click', toggleAlertsPanel);
+  userBtn.addEventListener('click', toggleUserMenu);
+
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.dropdown')) {
-            if (dropdownContent.classList.contains('show')) {
-                dropdownContent.classList.remove('show');
-            }
-        }
-    });
+      const isClickInsideNotifications = notificationsBtn.contains(event.target) || 
+                                       alertsPanel.contains(event.target);
+      const isClickInsideUser = userBtn.contains(event.target) || 
+                               userMenu.contains(event.target);
 
-    // Optional: Close dropdown when pressing Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && dropdownContent.classList.contains('show')) {
-            dropdownContent.classList.remove('show');
-        }
-    });
+      if (!isClickInsideNotifications && !isClickInsideUser) {
+          alertsPanel.hidden = true;
+          userMenu.hidden = true;
+      }
+  });
 
-    const body = document.querySelector("body"),
-    sidebar = body.querySelector(".sidebar"),
-    toggle = body.querySelector(".toggle"),
-    searchBtn = body.querySelector(".search-box"),
-    modeSwitch = body.querySelector(".toogle-switch"),
-    modeText = body.querySelector(".mode-text");
+modeSwitch.addEventListener("click", () =>{
+    body.classList.toggle("dark");
 
-    toggle.addEventListener("click", () =>{
-        sidebar.classList.toggle("close");
-    });
-
-    searchBtn.addEventListener("click", () =>{
-        sidebar.classList.remove("close");
-    });
-
-    modeSwitch.addEventListener("click", () =>{
-        body.classList.toggle("dark");
-
-        if (body.classList.contains("dark")) {
-            modeText.innerText = "Light Mode"
-        }else {
-            modeText.innerText = "Dark Mode"
-        }
-    });
+    if (icon.classList.contains('bx-moon')) {
+      icon.classList.replace('bx-moon', 'bxs-sun');
+    } else {
+        icon.classList.replace('bxs-sun', 'bx-moon');
+    }
 
 });
+
+const deleteBtn = document.querySelector('.delete');
+const overlayModal = document.querySelector('.modal-overlay');
+const cancelOverlay = document.querySelector('.cancel-button');
+const confirmDelete = document.querySelector('.delete-button');
+const successContainer = document.querySelector('.success-container');
+const removeSuccess = document.querySelector('.remove-success');
+
+
+deleteBtn.addEventListener("click", () =>{
+  overlayModal.classList.toggle("modal-show");
+});
+
+cancelOverlay.addEventListener("click", () =>{
+  overlayModal.classList.remove("modal-show");
+});
+
+confirmDelete.addEventListener("click", () =>{
+  successContainer.classList.toggle("show");
+  overlayModal.classList.remove("modal-show");
+});
+
+removeSuccess.addEventListener("click", () =>{
+  successContainer.classList.remove("show");
+});
+
+
+
+
+
 
 
 

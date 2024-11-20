@@ -12,7 +12,7 @@
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>HomePage</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -181,7 +181,6 @@
 
     <main class="home">
         <section class="all-users">
-            <!-- Header -->
 
             <div class="success-container">
                 <div class="success-icon">
@@ -193,12 +192,87 @@
                 </button>
             </div>
 
-            <header class="header">
-                <div class="header-tabs">
-                    <a href="#" class="header-tab active">Members</a>
-                    <a href="#" class="header-tab">Admins</a>
+            <!-- <div class="summary">
+                <div class="summary-item">
+                    <h3>Total Order</h3>
+                    <p class="value">40,876</p>
+                    <p class="status up">Up from yesterday</p>
                 </div>
-            </header>
+                <div class="summary-item">
+                    <h3>Total Sales</h3>
+                    <p class="value">38,876</p>
+                    <p class="status up">Up from yesterday</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Profit</h3>
+                    <p class="value">$12,876</p>
+                    <p class="status up">Up from yesterday</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Return</h3>
+                    <p class="value">11,086</p>
+                    <p class="status down">Down from today</p>
+                </div>
+            </div> -->
+
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="content-left">
+                        <h3>Total Order</h3>
+                        <p class="value">40,876</p>
+                        <p class="summary-status up">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            Up from yesterday
+                        </p>
+                    </div>
+                    <div class="icon-wrapper">
+                        <i class='bx bx-cart'></i>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="content-left">
+                        <h3>Total Sales</h3>
+                        <p class="value">38,876</p>
+                        <p class="summary-status up">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            Up from yesterday
+                        </p>
+                    </div>
+                    <div class="icon-wrapper">
+                        <i class='bx bx-shopping-bag'></i>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="content-left">
+                        <h3>Total Profit</h3>
+                        <p class="value">$12,876</p>
+                        <p class="summary-status up">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            Up from yesterday
+                        </p>
+                    </div>
+                    <div class="icon-wrapper">
+                        <i class='bx bx-dollar-circle'></i>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="content-left">
+                        <h3>Total Return</h3>
+                        <p class="value">11,086</p>
+                        <p class="summary-status down">
+                            <i class='bx bx-down-arrow-alt'></i>
+                            Down from yesterday
+                        </p>
+                    </div>
+                    <div class="icon-wrapper">
+                        <i class='bx bx-refresh'></i>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Table Container with Pagination -->
             <div class="table-container">

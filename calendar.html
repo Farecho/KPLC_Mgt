@@ -9,26 +9,17 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="calendar.css">
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>HomePage</title>
+
+    <!-- Font Awosome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <title>Calendar</title>
 </head>
 
 <body>
-    <div class="modal-overlay">
-        <div class="modal">
-            <div class="warning-icon">
-                <span>!</span>
-            </div>
-            <h2 class="modal-title">Are you sure?</h2>
-            <p class="modal-text">This action will delete all your information.<br>You won't be able to revert this!</p>
-            <div class="modal-buttons">
-                <button class="delete-button">Yes, delete it</button>
-                <button class="cancel-button">Cancel</button>
-            </div>
-        </div>
-    </div>
 
     <aside class="sidebar close">
         <header>
@@ -180,99 +171,79 @@
     </header>
 
     <main class="home">
+
         <section class="all-users">
-            <!-- Header -->
+            <!-- calendar  -->
+            <div class="container">
+                <div class="left">
+                    <div class="calendar">
+                        <div class="month">
+                            <i class="fas fa-angle-left prev"></i>
+                            <div class="date">december 2015</div>
+                            <i class="fas fa-angle-right next"></i>
+                        </div>
 
-            <div class="success-container">
-                <div class="success-icon">
-                    <i class='bx bx-check'></i>
+                        <div class="weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+
+                        <div class="days"></div>
+
+                        <div class="goto-today">
+                            <div class="goto">
+                                <input type="text" placeholder="mm/yyyy" class="date-input" />
+                                <button class="goto-btn">Go</button>
+                            </div>
+                            <button class="today-btn">Today</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="success-message">Success! Record deleted successfully.</div>
-                <button class="close-button">
-                    <i class='bx bx-x remove-success'></i>
+
+                <div class="right">
+                    <div class="today-date">
+                        <div class="event-day">wed</div>
+                        <div class="event-date">12th december 2022</div>
+                    </div>
+                    <div class="events"></div>
+                    <div class="add-event-wrapper">
+                        <div class="add-event-header">
+                            <div class="title">Add Event</div>
+                            <!-- <i class="fas fa-times close"></i> -->
+                            <i class="fas fa-times close-event"></i>
+                        </div>
+                        <div class="add-event-body">
+                            <div class="add-event-input">
+                                <input type="text" placeholder="Event Name" class="event-name" />
+                            </div>
+                            <div class="add-event-input">
+                                <input type="text" placeholder="Event Time From" class="event-time-from" />
+                            </div>
+                            <div class="add-event-input">
+                                <input type="text" placeholder="Event Time To" class="event-time-to" />
+                            </div>
+                        </div>
+                        <div class="add-event-footer">
+                            <button class="add-event-btn">Add Event</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-event">
+                    <i class="fas fa-plus"></i>
                 </button>
-            </div>
-
-            <header class="header">
-                <div class="header-tabs">
-                    <a href="#" class="header-tab active">Members</a>
-                    <a href="#" class="header-tab">Admins</a>
-                </div>
-            </header>
-
-            <!-- Table Container with Pagination -->
-            <div class="table-container">
-                <div class="member-management">
-                    <div class="search-box">
-                        <i class='bx bx-search'></i>
-                        <input type="text" class="search-input" placeholder="Search members...">
-                    </div>
-                    <!-- <button class="add-new-btn">
-                        <i class='bx bx-plus'></i>
-                        Add new
-                    </button> -->
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ConnectionID</th>
-                            <th>Username</th>
-                            <th>Mobile</th>
-                            <th>Station</th>
-                            <th>Connection</th>
-                            <th>Status</th>
-                            <th>Operation</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="user-id">01</div>
-                            </td>
-                            <td>George Lindelof</td>
-                            <td>+4 315 23 62</td>
-                            <td>carlsen@armand.no</td>
-                            <td>Kikuyu</td>
-                            <td><span class="status">Active</span></td>
-                            <td>
-                                <div class="operations">
-                                    <i class='bx bx-trash operation-icon delete' title="Delete"></i>
-                                    <!-- <i class='bx bx-show operation-icon view' title="View"></i> -->
-                                    <!-- <i class='bx bx-edit-alt operation-icon edit' title="Edit"></i> -->
-                                </div>
-                            </td>
-                            <td>
-                                <button class="login-btn">Assign</button>
-                            </td>
-                        </tr>
-
-                        <!-- More rows can be added here -->
-                    </tbody>
-                </table>
-
-                <!-- Pagination within table container -->
-                <div class="pagination">
-                    <div class="pagination-info">
-                        Showing 1 to 10 of 57 entries
-                    </div>
-                    <div class="pagination-controls">
-                        <button class="page-btn">Previous</button>
-                        <button class="page-btn active">1</button>
-                        <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                        <button class="page-btn">4</button>
-                        <button class="page-btn">5</button>
-                        <button class="page-btn">6</button>
-                        <button class="page-btn">Next</button>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
 
+    <script src="calendar.js"></script>
     <script src="home.js"></script>
+
 </body>
 
 </html>
