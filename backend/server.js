@@ -16,14 +16,18 @@ const passport = require('passport');
 //const registerRouter = require("./signup.config");
 const { signupValidation, handleValidationErrors } = require("./signup.config");
 const nodemailer = require("nodemailer");
+const {authorizeRolePermission} = require("./roleModule");
 
 //Configuring the email transporter using environment variables for sensitive data
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE,
+  host: 'smtp.gmail.com',
+  port: 587, // TSL
+  secure: false, // Use SSL (true for port 465, false for port 587)
   auth: {
     user: process.env.EMAIL_USER, //email address
     pass: process.env.EMAIL_PASS // app password
-  }
+  },
+  connectionTimeout: 10000
 })
 
 
@@ -125,12 +129,15 @@ app.post(
           // Hash the password before saving it
           const hashedPassword = await bcrypt.hash(password, 10);
 
+           // Assign the Customer role_id ( the ID for 'Customer' role is 4)
+          const [role] = await db.query("SELECT id FROM roles WHERE role_name = 'Customer'");
+          const roleId = role.id;
           // Insert the new user into the database
           try {
               // Insert the new user into the database
               const [result] = await db.promise().query(
-                  "INSERT INTO users (username, email, pwd, phone_number) VALUES (?, ?, ?, ?)",
-                  [name, email, hashedPassword, phoneNumber]
+                  "INSERT INTO users (username, email, pwd, phone_number, role_id) VALUES (?, ?, ?, ?, ?)",
+                  [name, email, hashedPassword, phoneNumber, roleId]
               );
           
               // Log query result for debugging purposes only
@@ -312,6 +319,12 @@ app.get('/reset-password', async (req, res) => {
 
   res.render('reset-password.ejs', { token }); // Render a form to reset password
 });
+//  An Example Route accessible only to users with 'view_dashboard' permission
+app.get('/dashboard', authorizeRolePermission('view_dashboard'), (req,res) => {
+  res.render('dashboard.ejs', {user: req.user});
+});
+ 
+// I'll add routes here once all the files for all user roles are added. These will be for managing  access control based on permissions.
 
 
 
