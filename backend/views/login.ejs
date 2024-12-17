@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ===== Iconscout CSS ===== -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-  <!-- ===== CSS ===== -->
-  <link rel="stylesheet" href="custom.css" />
+  <link rel="stylesheet" href="/css/custom.css" />
   <title>Login Form</title>
 </head>
-
 <body>
   <main class="container">
     <div class="forms">
-      <!-- login section -->
       <div class="form login">
-        <span class="title">Login</span>
-
-        <form action="#">
+        <form action="/login" method="POST">
+          <!-- Flash message alerts -->
+          <div class="alert-container">
+            <% if (messages.error && messages.error.length > 0) { %>
+              <% messages.error.forEach(function(err) { %>
+                <div class="alert alert-danger">
+                  <strong><%= err %></strong>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+          <span class="title">Login</span>
           <div class="input-field">
-            <input type="text" placeholder="Enter your email" required />
+            <input type="text" name="email" placeholder="Enter your email" required />
             <i class="uil uil-envelope icon"></i>
           </div>
           <div class="input-field">
-            <input type="password" class="password" placeholder="Enter your password" required />
+            <input type="password" name="password" class="password" placeholder="Enter your password" required />
             <i class="uil uil-lock icon"></i>
             <i class="uil uil-eye-slash showHidePw"></i>
           </div>
-
           <div class="checkbox-text">
             <div class="checkbox-content">
               <input type="checkbox" id="logCheck" />
-              <label for="logCheck" class="text">Remember me</label>
+              <label for="logCheck" class="text" name ="remember">Remember me</label>
             </div>
-
-            <a href="#" class="text">Forgot password?</a>
+            <a href="/forgot-password" class="text">Forgot password?</a>
           </div>
-
           <div class="input-field button">
-            <!-- <input type="button" value="Login" href="./home.html" />   -->
-            <input type="button" value="Login" onclick="window.location.href='./home.html';" />
+            <input type="submit" value="Login" />
           </div>
         </form>
-
         <div class="login-signup">
-          <span class="text">Not a member?<a href="./registration.php" class="text signup-link">Signup Now</a>
-          </span>
+          <span class="text">Not a member?<a href="/signup" class="text signup-link">Signup Now</a></span>
         </div>
       </div>
     </div>
   </main>
-
   <script src="script.js"></script>
 </body>
-
 </html>

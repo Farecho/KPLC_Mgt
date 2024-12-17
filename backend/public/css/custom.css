@@ -7,9 +7,13 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
 body {
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,8 +27,11 @@ body {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 0 20px;
+  margin: 20px; /* Adds spacing to prevent clipping */
+  padding: 20px; /* Adds internal spacing for smaller screens */
+  box-sizing: border-box; /* Ensures padding doesn’t overflow the container */
+  max-height: calc(100vh - 40px); /* Leaves some margin for spacing */
+  overflow-y: auto; /* Enables scrolling within the form */
 }
 
 .container .forms {
@@ -183,45 +190,50 @@ body {
   margin-top: 30px;
   text-align: center;
 }
-/* Error Message Styling */
-.input-field.error {
+/* .alert-container {
   position: relative;
+  margin-bottom: 10px; /* Spacing between alert and the form */
+  /* min-height: 50px; Allocates space for errors */
+  /* margin-bottom: 20px; Adds spacing between error block and form fields */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.input-field.error input {
-  border-bottom-color: #f44336; /* Red for errors */
+.alert {
+  padding: 10px 15px;
+  margin-bottom: 5px 0; /* Provide some spacing between alerts if multiple */
+  /* border: 1px solid transparent;
+  border-radius: 4px;
+} */ 
+
+/* .alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
-.input-field.error i {
-  color: #f44336;
+.alert-danger strong {
+  font-weight: bold;
+} */
+.alert-container {
+  position: relative;
+  margin-bottom: 10px; /* Spacing between alert and the form */
 }
 
-.input-field .error-message {
-  font-size: 13px;
-  color: #f44336;
-  margin-top: 5px;
-  display: block;
-  position: absolute;
-  bottom: -20px;
-  left: 5px;
+.alert {
+  padding: 10px 15px;
+  margin-bottom: 10px; /* Provide some spacing between alerts if multiple */
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 
-/* Adjust spacing for error messages */
-.input-field {
-  margin-bottom: 40px; /* Extra space to account for error messages */
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
-/* Success Message Styling */
-.success-message {
-  font-size: 14px;
-  color: #4caf50; /* Green for success */
-  text-align: center;
-  margin-top: 15px;
-}
-
-/* Terms and Conditions Error */
-.checkbox-text .error-message {
-  font-size: 13px;
-  color: #f44336;
-  margin-top: 5px;
+.alert-danger strong {
+  font-weight: bold;
 }

@@ -8,7 +8,7 @@
   <!-- ===== Iconscout CSS ===== -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
   <!-- ===== CSS ===== -->
-  <link rel="stylesheet" href="custom.css" />
+  <link rel="stylesheet" href="/css/custom.css" />
   <title>Registration Form</title>
 </head>
 
@@ -17,45 +17,49 @@
     <div class="forms">
       <!-- Registration Section-->
       <div class="form signup">
-        <span class="title">Registration</span>
-
-        <form action="includes/signup.inc.php" method="POST">
+        <form action="/signup" method="POST">
+          <% console.log("Messages in View:", messages.error); %>
+          <div class="alert-container">
+            <% if (messages.error && messages.error.length > 0) { %>
+              <% messages.error.forEach(function(err) { %>
+                <div class="alert alert-danger">
+                  <strong><%= err %></strong>
+                </div>
+              <% }); %>
+            <% } %>
+          </div>
+          <span class="title">Registration</span>
           <div class="input-field">
-              <input type="text" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" placeholder="Enter your name" />
+              <input type="text" name="name" placeholder="Enter your name" required />
               <i class="uil uil-user"></i>
-              <span class="error"><?= $errors['name'] ?? '' ?></span>
           </div>
       
           <div class="input-field">
-              <input type="text" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" placeholder="Enter your email" />
+              <input type="text" name="email" placeholder="Enter your email" required/>
               <i class="uil uil-envelope icon"></i>
-              <span class="error"><?= $errors['email'] ?? '' ?></span>
           </div>
       
           <div class="input-field">
-              <input type="password" name="password" placeholder="Create a password" />
+              <input type="password" name="password" placeholder="Create a password" required/>
               <i class="uil uil-lock icon"></i>
               <i class="uil uil-eye-slash showHidePw"></i>
-              <span class="error"><?= $errors['password'] ?? '' ?></span>
           </div>
       
           <div class="input-field">
-              <input type="password" name="confirmPassword" placeholder="Confirm a password" />
+              <input type="password" name="confirmPassword" placeholder="Confirm a password" required />
               <i class="uil uil-lock icon"></i>
-              <span class="error"><?= $errors['confirmPassword'] ?? '' ?></span>
+              <i class="uil uil-eye-slash showHidePw"></i>
           </div>
       
           <div class="input-field">
-              <input type="tel" name="phoneNumber" value="<?= htmlspecialchars($_POST['phoneNnumber'] ?? '') ?>" placeholder="Enter your phone number" />
+              <input type="tel" name="phoneNumber"  placeholder="Enter your phone number" required/>
               <i class="uil uil-phone icon"></i>
-              <span class="error"><?= $errors['phoneNumber'] ?? '' ?></span>
           </div>
       
           <div class="checkbox-text">
               <div class="checkbox-content">
-                  <input type="checkbox" id="termCon" name="terms" <?= isset($_POST['terms']) ? 'checked' : '' ?> />
+                  <input type="checkbox" id="termCon" name="terms" />
                   <label for="termCon" class="text">I accepted all terms and conditions</label>
-                  <span class="error"><?= $errors['terms'] ?? '' ?></span>
               </div>
           </div>
       
@@ -64,19 +68,18 @@
           </div>
       </form>
       
-      <span class="success"><?= $success ?? '' ?></span>
-      
 
         <div class="login-signup">
           <span class="text">Already a member?
-            <a href="./index.php" class="text login-link">Login Now</a>
+            <a href="/login" class="text login-link">Login Now</a>
           </span>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="script.js"></script>
+  <script src="/javascript/script.js"></script>
+
 </body>
 
 </html>
