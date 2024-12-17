@@ -13,7 +13,7 @@
         data: {
             labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
             datasets: [{
-                label: 'Monthly Sales',
+                label: 'N.o of faults vs faults resolved',
                 data: [12, 19, 3, 5, 2], // Data points
                 backgroundColor: [
                     'rgba(255, 99, 132)',
@@ -53,7 +53,7 @@
         data: {
             labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
             datasets: [{
-                label: 'Monthly Sales',
+                label: 'Maintenance Tasks over time',
                 data: [12, 19, 3, 5, 2], // Data points
                 backgroundColor: [
                     'rgba(255, 99, 132)',
@@ -93,7 +93,7 @@
         data: {
             labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
             datasets: [{
-                label: 'Monthly Sales',
+                label: 'New connections',
                 data: [12, 19, 3, 5, 2], // Data points
                 backgroundColor: [
                     'rgba(255, 99, 132)',
@@ -133,7 +133,7 @@
         data: {
             labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
             datasets: [{
-                label: 'Monthly Sales',
+                label: 'Faults Types over time',
                 data: [12, 19, 3, 5, 2], // Data points
                 backgroundColor: [
                     'rgba(255, 99, 132)',
