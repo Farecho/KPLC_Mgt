@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../main.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="warning-icon">
+                <span>!</span>
+            </div>
+            <h2 class="modal-title">Are you sure?</h2>
+            <p class="modal-text">This action will delete all your information.<br>You won't be able to revert this!</p>
+            <div class="modal-buttons">
+                <button class="delete-button">Yes, delete it</button>
+                <button class="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <aside class="sidebar close">
+        <header>
+            <div class="logo-box">
+                <span class="image">
+                    <img src="../images/svg/electric_bolt_20dp.svg" alt="">
+                </span>
+
+                <div class="company header-text">
+                    <span class="name">KPLC</span>
+                    <span class="profession">Power Effeciency</span>
+                </div>
+            </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+        </header>
+
+        <nav class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="./dashboard.html">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="./home.html">
+                            <i class="bx bx-user icon"></i>
+                            <span class="text nav-text">User Profiles</span>
+                            <i class='bx bx-chevron-down icon arrow'></i>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li><a href=""><span class="text">Daily</span></a></li>
+                            <li><a href=""><span class="text">Daily</span></a></li>
+                            <li><a href=""><span class="text">Daily</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="./home.html">
+                            <i class="bx bx-bell icon"></i>
+                            <span class="text nav-text">Services</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="./home.html">
+                            <i class="bx bx-error-alt icon"></i>
+                            <span class="text nav-text">Faults</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-link">
+                        <a href="./calendar.html">
+                            <i class="bx bx-hard-hat icon"></i>
+                            <span class="text nav-text">Maintenance</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="./data-analytics.html">
+                            <i class="bx bx-pie-chart-alt icon"></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text nav-text">Settings</span>
+                    </a>
+                </li>
+            </div>
+        </nav>
+    </aside>
+
+    <header class="top-bar">
+        <!-- -----breadcrumb--- -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page">Connection Details</li>
+        </ol>
+
+        <nav class="nav">
+            <button class="theme-toggle" aria-label="Toggle theme" type="button">
+                <i id="lights" class="bx bx-moon"></i>
+            </button>
+
+            <div class="notifications">
+                <button class="notifications-trigger" aria-label="View notifications" type="button">
+                    <i class="bx bxs-bell"></i>
+                    <span class="badge">4</span>
+                </button>
+
+                <div class="alerts-panel" hidden>
+                    <header>ALERTS CENTER</header>
+                    <ul class="alerts-list">
+                        <li class="alert">
+                            <i class="bx bx-file blue"></i>
+                            <div>
+                                <time datetime="2019-12-12">December 12, 2019</time>
+                                <p>A new monthly report is ready to download!</p>
+                            </div>
+                        </li>
+                        <li class="alert">
+                            <i class="bx bx-user green"></i>
+                            <div>
+                                <time datetime="2019-12-07">December 7, 2019</time>
+                                <p>New faults uploaded in Juja!</p>
+                            </div>
+                        </li>
+                        <li class="alert">
+                            <i class="bx bx-error yellow"></i>
+                            <div>
+                                <time datetime="2019-12-02">December 2, 2019</time>
+                                <p>Power Usage Alert: Unusual high power usage in JKIA.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="show-all" type="button">Show All Alerts</button>
+                </div>
+            </div>
+
+            <div class="user">
+                <button class="user-trigger" type="button">
+                    <span class="avatar">M</span>
+                    <div class="user-info">
+                        <span>Farida Mutwa</span>
+                        <span>Admin for KPLC LTD</span>
+                    </div>
+                    <i class="bx bx-chevron-down"></i>
+                </button>
+
+                <ul class="user-menu" hidden>
+                    <li><a href="#profile"><i class="bx bx-user"></i>Profile</a></li>
+                    <li><a href="#activity"><i class="bx bx-history"></i>Activity Log</a></li>
+                    <li><a href="#logout"><i class="bx bx-log-out"></i>Logout</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="home">
+        <section class="all-users">
+
+            <div class="success-container">
+                <div class="success-icon">
+                    <i class='bx bx-check'></i>
+                </div>
+                <div class="success-message">Success! Record deleted successfully.</div>
+                <button class="close-button">
+                    <i class='bx bx-x remove-success'></i>
+                </button>
+            </div>
+
+            <section class="welcome-section">
+                <h1> Welcome Farida</h1>
+            </section>
+
+            <div class="summary">
+                <div class="summary-item item-1">
+                    <div class="content-left">
+                        <h3>Power up</h3>
+                        <p class="value">Apply for electricity</p>
+                        <button>Learn more</button>
+                    </div>
+                </div>
+
+                <div class="summary-item item-2">
+                    <div class="content-left">
+                        <h3>Power up</h3>
+                        <p class="value">Apply for electricity</p>
+                        <button>Learn more</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <div class="summary-item item-3">
+                    <div class="content-left">
+                        <h3>Power up</h3>
+                        <p class="value">Apply for electricity</p>
+                        <button>Learn more</button>
+                    </div>
+                </div>
+
+                <div class="summary-item item-4">
+                    <div class="content-left">
+                        <h3>Power up</h3>
+                        <p class="value">Apply for electricity</p>
+                        <button>Learn more</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/home.js"></script>
+</body>
+
+</html>

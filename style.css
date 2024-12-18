@@ -855,48 +855,6 @@ input:focus-visible {
   max-height: 300px;
 }
 
-/* =====dashboard================= */
-/* .summary {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 20px;
-}
-
-.summary-item {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 23%;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.summary-item h3 {
-  margin: 0;
-  font-size: 16px;
-  color: #333;
-}
-
-.summary-item .value {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.status {
-  font-size: 14px;
-  color: gray;
-}
-
-.status.up {
-  color: green;
-}
-
-.status.down {
-  color: red;
-} */
-
 .summary {
   display: flex;
   gap: 20px;
@@ -906,6 +864,8 @@ input:focus-visible {
 .summary-item {
   flex: 1;
   background: white;
+
+
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -913,8 +873,31 @@ input:focus-visible {
   justify-content: space-between;
 }
 
+
+.summary-item.item-1 {
+  background: url(./images/dashboard-buttons/Apply-service.webp);
+}
+.summary-item.item-2 {
+  background: url(./images/dashboard-buttons/getbill.webp);
+}
+.summary-item.item-3 {
+  background: url(./images/dashboard-buttons/report-autage.webp);
+}
+.summary-item.item-4 {
+  background: url(./images/dashboard-buttons/reportfraud.webp);
+}
+.summary-item.item-1,
+.summary-item.item-2,
+.summary-item.item-3,
+.summary-item.item-4 {
+  background-size: cover;
+  background-position: center;
+}
+
+
+
 .content-left h3 {
-  color: #64748b;
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 12px;
@@ -923,8 +906,18 @@ input:focus-visible {
 .value {
   font-size: 24px;
   font-weight: 600;
-  color: #1e293b;
+  color: #fff;
   margin-bottom: 12px;
+}
+
+
+.content-left button {
+  background-color: #fff;
+  padding: 0.4rem 1.8rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
 .status {
@@ -985,4 +978,18 @@ input:focus-visible {
 
 .summary-item:nth-child(4) i {
   color: #ef4444;
+}
+
+/* =====================user-header================= */
+/* Header Section */
+.welcome-section {
+  background: linear-gradient(to right, #2b3a36, #a8de38);
+  color: #fff;
+  padding: 20px 0;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: relative;
+  border-radius: 1rem;
 }
