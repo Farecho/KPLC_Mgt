@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -49,53 +49,66 @@
         <nav class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#">
+                    <li class="nav-link has-submenu">
+                        <a href="/dashboard">
                             <i class="bx bx-home-alt icon"></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="nav-link">
-                        <a href=" #">
-                            <i class="bx bx-bar-chart-alt 2 icon"></i>
-                            <span class="text nav-text">Revenue</span>
+                    <li class="nav-link has-submenu">
+                        <a href="/home">
+                            <i class="bx bx-user icon"></i>
+                            <span class="text nav-text">User Profiles</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link has-submenu">
+                        <a href="">
+                            <i class="bx bx-bell icon"></i>
+                            <span class="text nav-text">Services</span>
                             <i class='bx bx-chevron-down icon arrow'></i>
                         </a>
 
                         <ul class="sub-menu">
-                            <li><a href=""><span class="text">Daily</span></a></li>
-                            <li><a href=""><span class="text">Daily</span></a></li>
-                            <li><a href=""><span class="text">Daily</span></a></li>
+                            <li><a href="/assign_task"><span class="text">Connnections</span></a></li>
+                            <li><a href=""><span class="text">Service Requests</span></a></li>
+                            <li><a href=""><span class="text">Service History</span></a></li>
+                        </ul>
+                    </li>
+                   
+                    <li class="nav-link has-submenu">
+                        <a href="/home">
+                            <i class="bx bx-error-alt icon"></i>
+                            <span class="text nav-text">Faults</span>
+                            <i class='bx bx-chevron-down icon arrow'></i>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li><a href=""><span class="text">Fault Reports</span></a></li>
+                            <li><a href=""><span class="text">Fault History</span></a></li>
+                            <li><a href=""><span class="text">Service History</span></a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-link">
+                    <li class="nav-link has-submenu">
                         <a href="#">
-                            <i class="bx bx-bell icon"></i>
-                            <span class="text nav-text">Notification</span>
+                            <i class="bx bx-bar-chart-alt 2 icon"></i>
+                            <span class="text nav-text">Tasks</span>
+                            <i class='bx bx-chevron-down icon arrow'></i>
                         </a>
+                        <ul class="sub-menu">
+                            <li><a href="/calender" id ="create-task-link" ><span class="text">Create Tasks</span></a></li>
+                            <li><a href="/assign_task" id ="assign-task-link"><span class="text">Assign Tasks</span></a></li>
+                            <li><a href="#" id="view-task-link"><span class="text">View Tasks</span></a></li>
+                        </ul>
                     </li>
 
+
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/data-analytics">
                             <i class="bx bx-pie-chart-alt icon"></i>
                             <span class="text nav-text">Analytics</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="bx bx-heart icon"></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class="bx bx-wallet icon"></i>
-                            <span class="text nav-text">Wallet</span>
                         </a>
                     </li>
                 </ul>
@@ -115,7 +128,7 @@
     <header class="top-bar">
         <!-- -----breadcrumb--- -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Customer</li>
+            <li class="breadcrumb-item">Dashboard</li>
             <li class="breadcrumb-item active" aria-current="page">Connection Details</li>
         </ol>
 
@@ -144,14 +157,14 @@
                             <i class="bx bx-user green"></i>
                             <div>
                                 <time datetime="2019-12-07">December 7, 2019</time>
-                                <p>$290.29 has been deposited into your account!</p>
+                                <p>New faults uploaded in Juja!</p>
                             </div>
                         </li>
                         <li class="alert">
                             <i class="bx bx-error yellow"></i>
                             <div>
                                 <time datetime="2019-12-02">December 2, 2019</time>
-                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
+                                <p>Power Usage Alert: Unusual high power usage in JKIA.</p>
                             </div>
                         </li>
                     </ul>
@@ -161,18 +174,27 @@
 
             <div class="user">
                 <button class="user-trigger" type="button">
-                    <span class="avatar">M</span>
+                    <!-- <span class="avatar">M</span>
                     <div class="user-info">
                         <span>Farida Mutwa</span>
                         <span>Admin for KPLC LTD</span>
                     </div>
+                    <i class="bx bx-chevron-down"></i> -->
+                         <!-- Display the avatar  -->
+                        <div class="avatar">
+                          <span><%= user.name.charAt(0).toUpperCase() %></span>
+                        </div>
+                         <!-- Display the user's name and role  -->
+                        <div class="user-info">
+                          <span><%= user.name %></span>
+                          <span><%= user.role %> for KPLC LTD</span>
+                        </div>
                     <i class="bx bx-chevron-down"></i>
                 </button>
 
                 <ul class="user-menu" hidden>
                     <li><a href="#profile"><i class="bx bx-user"></i>Profile</a></li>
-                    <li><a href="#activity"><i class="bx bx-history"></i>Activity Log</a></li>
-                    <li><a href="#logout"><i class="bx bx-log-out"></i>Logout</a></li>
+                    <li><a href="/login"><i class="bx bx-log-out"></i>Logout</a></li>
                 </ul>
             </div>
 
@@ -218,7 +240,7 @@
             <div class="summary">
                 <div class="summary-item">
                     <div class="content-left">
-                        <h3>Total Order</h3>
+                        <h3>Total Connections</h3>
                         <p class="value">40,876</p>
                         <p class="summary-status up">
                             <i class='bx bx-up-arrow-alt'></i>
@@ -226,13 +248,17 @@
                         </p>
                     </div>
                     <div class="icon-wrapper">
-                        <i class='bx bx-cart'></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#5f6368">
+                            <path
+                                d="M460-200h40v-74l140-140v-186H320v186l140 140v74Zm-80 80v-120L240-380v-220q0-33 23.5-56.5T320-680h40l-40 40v-200h80v160h160v-160h80v200l-40-40h40q33 0 56.5 23.5T720-600v220L580-240v120H380Zm100-280Z" />
+                        </svg>
                     </div>
                 </div>
 
                 <div class="summary-item">
                     <div class="content-left">
-                        <h3>Total Sales</h3>
+                        <h3>Recent Connections</h3>
                         <p class="value">38,876</p>
                         <p class="summary-status up">
                             <i class='bx bx-up-arrow-alt'></i>
@@ -240,7 +266,11 @@
                         </p>
                     </div>
                     <div class="icon-wrapper">
-                        <i class='bx bx-shopping-bag'></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#5f6368">
+                            <path
+                                d="M460-200h40v-74l140-140v-186H320v186l140 140v74Zm-80 80v-120L240-380v-220q0-33 23.5-56.5T320-680h40l-40 40v-200h80v160h160v-160h80v200l-40-40h40q33 0 56.5 23.5T720-600v220L580-240v120H380Zm100-280Z" />
+                        </svg>
                     </div>
                 </div>
 
@@ -260,7 +290,7 @@
 
                 <div class="summary-item">
                     <div class="content-left">
-                        <h3>Total Return</h3>
+                        <h3>Total Outages</h3>
                         <p class="value">11,086</p>
                         <p class="summary-status down">
                             <i class='bx bx-down-arrow-alt'></i>
@@ -272,6 +302,7 @@
                     </div>
                 </div>
             </div>
+
 
 
             <!-- Table Container with Pagination -->
@@ -346,7 +377,7 @@
         </section>
     </main>
 
-    <script src="home.js"></script>
+    <script src="\javascript\home.js"></script>
 </body>
 
 </html>

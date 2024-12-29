@@ -3,6 +3,8 @@ if (process.env.NODE_ENV !== "production"){
 }
 
 const express = require("express");
+const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
 const app = express();
 const dotenv = require("dotenv");
 const mysql = require("mysql2");
@@ -35,6 +37,7 @@ initializePassport(passport, getUserByEmail, getUserById);
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json())
 dotenv.config();
 
 //Connecting to the Database 
@@ -78,17 +81,20 @@ async function getUserByEmail(email){
     })
   })
 }
-// Function to get user by ID
-async  function getUserById(id){
+// Function to get user by ID and user role
+async function getUserById(id) {
   return new Promise((resolve, reject) => {
-    db.query('SELECT * FROM users WHERE id = ?', [id], (err, results) => {
-      if(err){
-        reject(err);
-      }else{
-        resolve(results[0]);
-      }
-    })
-  })
+    const query = `
+      SELECT users.id, users.username, roles.role_name
+      FROM users
+      JOIN roles ON users.role_id = roles.id
+      WHERE users.id = ?
+    `;
+    db.query(query, [id], (err, results) => {
+      if (err) reject(err);
+      else resolve(results[0]);
+    });
+  });
 }
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -130,8 +136,8 @@ app.post(
           const hashedPassword = await bcrypt.hash(password, 10);
 
            // Assign the Customer role_id ( the ID for 'Customer' role is 4)
-          const [role] = await db.query("SELECT id FROM roles WHERE role_name = 'Customer'");
-          const roleId = role.id;
+           const [roles] = await db.query("SELECT id FROM roles WHERE role_name = 'Customer'");
+           const roleId = roles[0].id;
           // Insert the new user into the database
           try {
               // Insert the new user into the database
@@ -160,7 +166,6 @@ app.post(
   }
 );
 
-
 // app.post("/login", passport.authenticate("local", {
 //   successRedirect: "/home",
 //   failureRedirect: "/login",
@@ -186,7 +191,7 @@ app.post("/login", (req, res, next) => {
       else{
         req.session.cookie.expires = false;//Session ends when browser is closed
      }
-     return res.redirect("/home"); //Redirect on successful login
+     return res.redirect("/dashboard"); //Redirect on successful login
     })
   })
   (req, res, next);
@@ -295,7 +300,39 @@ function checkAuthenticated(req, res, next) {
 }
 
 app.get('/home', checkAuthenticated, (req, res) => {
-  res.render("home.ejs");
+  const user = {
+    name: req.user.username,
+    role: req.user.role_name,
+  };
+  res.render("home.ejs", { user });
+});
+
+app.get('/calender', checkAuthenticated, (req, res) => {
+  const user = {
+    name: req.user.username,
+    role: req.user.role_name,
+  };
+  res.render("calender.ejs", { user });
+});
+
+app.get('/dashboard', checkAuthenticated, (req, res) => {
+  const user = {
+    name: req.user.username,
+    role: req.user.role_name,
+  };
+  res.render("dashboard.ejs", { user });
+});
+
+app.get('/data-analytics', checkAuthenticated, (req, res) =>{
+  const user = {
+    name: req.user.username,
+    role: req.user.role_name,
+  };
+  res.render('data-analytics.ejs', { user });
+});
+
+app.get('/assign_task', (req, res) =>{
+  res.render('assign_task.ejs');
 });
 
 // Route to render the forgot password form
@@ -319,14 +356,13 @@ app.get('/reset-password', async (req, res) => {
 
   res.render('reset-password.ejs', { token }); // Render a form to reset password
 });
-//  An Example Route accessible only to users with 'view_dashboard' permission
-app.get('/dashboard', authorizeRolePermission('view_dashboard'), (req,res) => {
-  res.render('dashboard.ejs', {user: req.user});
-});
+
+// //  An Example Route accessible only to users with 'view_dashboard' permission
+// app.get('/dashboard', authorizeRolePermission('view_dashboard'), (req,res) => {
+//   res.render('dashboard.ejs', {user: req.user});
+// });
  
 // I'll add routes here once all the files for all user roles are added. These will be for managing  access control based on permissions.
-
-
 
 // listening to the port
 const PORT = 3300;

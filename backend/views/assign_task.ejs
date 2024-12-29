@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Task View</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .main {
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-header .btn-close {
+            margin-left: auto;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <!-- Header Content -->
+    </header>
+
+    <aside id="sidebar">
+        <!-- Sidebar Content -->
+    </aside>
+
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Assigned Task Report</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Tasks</a></li>
+                    <li class="breadcrumb-item active">Assigned Task Report</li>
+                    <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#assignTaskModal">Assign Task</button>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="assignTaskModal" tabindex="-1" aria-labelledby="assignTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="assignTaskModalLabel">Assign Task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="assignTaskForm">
+                            <div class="mb-3">
+                                <label for="employeeName" class="form-label">Task Assign To</label>
+                                <select class="form-select" id="employeeName" required>
+                                    <option value="">Select</option>
+                                    <option value="John Doe">John Doe</option>
+                                    <option value="Jane Smith">Jane Smith</option>
+                                    <option value="Alice Brown">Alice Brown</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <select class="form-select" id="companyName" required>
+                                    <option value="">Select</option>
+                                    <option value="Company A">Company A</option>
+                                    <option value="Company B">Company B</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskName" class="form-label">Task Name</label>
+                                <input type="text" class="form-control" id="taskName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <input type="text" class="form-control" id="status" value="Pending" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="allocationDate" class="form-label">Allocation Date</label>
+                                <input type="date" class="form-control" id="allocationDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deadline" class="form-label">Deadline</label>
+                                <input type="date" class="form-control" id="deadline" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Report</h5>
+                            <div id="dataTableDiv">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Sr.No</th>
+                                            <th>Assigned To</th>
+                                            <th>Company</th>
+                                            <th>Task Name</th>
+                                            <th>Allocation Date</th>
+                                            <th>Deadline</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="taskTableBody">
+                                        <!-- Dynamic content -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        const taskTableBody = document.getElementById("taskTableBody");
+        const assignTaskForm = document.getElementById("assignTaskForm");
+
+        assignTaskForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const taskData = {
+                assignedTo: document.getElementById("employeeName").value,
+                company: document.getElementById("companyName").value,
+                taskName: document.getElementById("taskName").value,
+                allocationDate: document.getElementById("allocationDate").value,
+                deadline: document.getElementById("deadline").value,
+                status: document.getElementById("status").value,
+            };
+
+            const row = `
+                <tr>
+                    <td>${taskTableBody.rows.length + 1}</td>
+                    <td>${taskData.assignedTo}</td>
+                    <td>${taskData.company}</td>
+                    <td>${taskData.taskName}</td>
+                    <td>${taskData.allocationDate}</td>
+                    <td>${taskData.deadline}</td>
+                    <td><span class="badge bg-danger">${taskData.status}</span></td>
+                    <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                </tr>
+            `;
+            taskTableBody.insertAdjacentHTML("beforeend", row);
+            assignTaskForm.reset();
+            bootstrap.Modal.getInstance(document.getElementById("assignTaskModal")).hide();
+        });
+    </script>
+</body>
+</html>
